@@ -1,0 +1,24 @@
+const inputData = "3";
+
+function solveDigitsProblem(pString) {
+    const p = parseInt(pString.trim(), 10);
+
+    if (p === 1) return 2;
+    if (p === 2) return 4;
+
+    let same1 = 1;
+    let same2 = 1;
+
+    for (let i = 3; i <= p; i++) {
+        let next_same1 = same1 + same2;
+        let next_same2 = same1;
+
+        same1 = next_same1;
+        same2 = next_same2;
+    }
+
+    return (same1 + same2) * 2;
+}
+
+const result = solveDigitsProblem(inputData);
+console.log(result);
