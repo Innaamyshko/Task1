@@ -1,0 +1,30 @@
+const inputLine1 = "3";
+const inputLine2 = "6 8 12";
+
+function findGCD(a, b) {
+    while (b !== 0) {
+        let temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+function findLCM(a, b) {
+    return (a * b) / findGCD(a, b);
+}
+
+function solveLCMProblem(pString, numbersString) {
+    const p = parseInt(pString.trim(), 10);
+    const numbers = numbersString.trim().split(/\s+/).map(Number);
+    let currentLCM = numbers[0];
+    
+    for (let i = 1; i < p; i++) {
+        currentLCM = findLCM(currentLCM, numbers[i]);
+    }
+    
+    return currentLCM;
+}
+
+const result = solveLCMProblem(inputLine1, inputLine2);
+console.log(result);
