@@ -1,0 +1,31 @@
+const inputData = "SOLO";
+
+function getFactorial(num) {
+    let result = 1;
+    for (let i = 2; i <= num; i++) {
+        result *= i;
+    }
+    return result;
+}
+
+function solveAnagrams(wordString) {
+    const word = wordString.trim();
+    const n = word.length;
+
+    const letterCounts = {};
+    for (let i = 0; i < n; i++) {
+        const letter = word[i];
+        letterCounts[letter] = (letterCounts[letter] || 0) + 1;
+    }
+
+    let totalAnagrams = getFactorial(n);
+
+    for (let letter in letterCounts) {
+        totalAnagrams /= getFactorial(letterCounts[letter]);
+    }
+
+    return totalAnagrams;
+}
+
+const result = solveAnagrams(inputData);
+console.log(result);
