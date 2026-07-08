@@ -1,0 +1,28 @@
+const inputData = "4";
+
+function solveOnesProblem(nString) {
+    const n = parseInt(nString.trim(), 10);
+    const MOD = 12345;
+
+    if (n === 1) return 2; // "0", "1"
+    if (n === 2) return 4; // "00", "01", "10", "11"
+
+    let zero = 2; 
+    let one1 = 1; 
+    let one2 = 1; 
+
+    for (let i = 3; i <= n; i++) {
+        let next_zero = (zero + one1 + one2) % MOD;
+        let next_one1 = zero;
+        let next_one2 = one1;
+
+        zero = next_zero;
+        one1 = next_one1;
+        one2 = next_one2;
+    }
+
+    return (zero + one1 + one2) % MOD;
+}
+
+const result = solveOnesProblem(inputData);
+console.log(result);
