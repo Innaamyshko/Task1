@@ -1,0 +1,22 @@
+const inputData = "20";
+
+function solveEqualDivisors(nString) {
+    const n = parseInt(nString.trim(), 10);
+    let count = 0;
+
+    for (let d = 1; d <= n; d++) {
+        if (n % d === 0) {
+            let m = d - 1;
+            let k = n / d;
+
+            if (m > 0 && k < m) {
+                count++;
+            }
+        }
+    }
+
+    return count;
+}
+
+const result = solveEqualDivisors(inputData);
+console.log(result);
